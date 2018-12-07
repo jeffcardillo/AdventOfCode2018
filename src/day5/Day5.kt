@@ -2,8 +2,6 @@ package code.day4
 
 import java.io.File
 import java.io.InputStream
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 
 class Day5 {
     fun run() {
@@ -50,11 +48,11 @@ class Day5 {
     fun partB() {
         println("Day 5 - Part B")
 
-        var units = arrayListOf<Char>('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z')
         var bestNumUnits = Int.MAX_VALUE
-        var bestKill : Char = 'a'
+        var bestUnitToKill: Char = 'a'
 
-        for (killUnit in units) {
+        // iterate over all letters starting at 'a'
+        for (killUnit in 'a'..('a'+25)) {
             var indexA = 0
             var indexB = 1
 
@@ -86,7 +84,7 @@ class Day5 {
                 if (indexB >= line.length) {
                     if (line.length < bestNumUnits) {
                         bestNumUnits = line.length
-                        bestKill = killUnit
+                        bestUnitToKill = killUnit
                     }
                     println("\t* ($killUnit) $line")
                     done = true
@@ -94,7 +92,7 @@ class Day5 {
             }
         }
 
-        println("\t* Best Number of Units: $bestNumUnits by killing $bestKill")
+        println("\t* Best Number of Units: $bestNumUnits by killing $bestUnitToKill")
     }
 
 
