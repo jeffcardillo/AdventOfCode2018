@@ -5,7 +5,7 @@ import java.io.InputStream
 
 class Day6 {
     fun run() {
-//        partA()
+        partA()
         partB()
     }
 
@@ -22,7 +22,6 @@ class Day6 {
         var space = Array(spaceDistance) { Array(spaceDistance) { ChoronalPoint("blank", Int.MAX_VALUE) }}
         var edgePoints = mutableListOf<String>()
 
-
         fileValuesList.forEach{
             // for every point, mark distance from every space coordinate if closest so far
             val X = getX(it)
@@ -37,18 +36,22 @@ class Day6 {
 
                     val existing = space[x][y]
 
-                    if (existing != null) {
-                        if (existing?.distance > distance) {
-                            existing.distance = distance
-                            existing.label = label
-
-                            if (x == 0 || y == 0 || x == (spaceDistance-1) || y == (spaceDistance-1)) {
-                                edgePoints.add(existing.label)
-                            }
-                        } else if (existing.distance == distance) {
-                            existing.label = "blank"
-                        }
+                    if (existing.distance > distance) {
+                        existing.distance = distance
+                        existing.label = label
+                    } else if (existing.distance == distance) {
+                        existing.label = "blank"
                     }
+                }
+            }
+        }
+
+        // mark labels on the edge (infinity)
+        for (x in 0..(spaceDistance-1)) {
+            for (y in 0..(spaceDistance-1)) {
+                if (x == 0 || y == 0 || x == (spaceDistance-1) || y == (spaceDistance-1)) {
+                    val existing = space[x][y]
+                    edgePoints.add(existing.label)
                 }
             }
         }
@@ -100,9 +103,7 @@ class Day6 {
                     val distance = Math.abs(X - x) + Math.abs(Y - y)
                     val existing = space[x][y]
 
-                    if (existing != null) {
-                        existing.distance += distance
-                    }
+                    existing.distance += distance
                 }
             }
         }
