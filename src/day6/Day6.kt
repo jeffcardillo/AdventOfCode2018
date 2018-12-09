@@ -1,7 +1,7 @@
 package code.day6
 
 import java.io.File
-import java.io.InputStream
+import java.io.FileInputStream
 
 class Day6 {
     fun run() {
@@ -133,7 +133,7 @@ class Day6 {
     }
 
     private fun readInputFile(): List<String> {
-        val inputStream: InputStream = File("./src/day6/day6_input.txt").inputStream()
+        val inputStream: FileInputStream = File("./src/day6/day6_input.txt").inputStream()
         val lineList = mutableListOf<String>()
 
         inputStream.bufferedReader().useLines { lines -> lines.forEach { lineList.add(it)} }

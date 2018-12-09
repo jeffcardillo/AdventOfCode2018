@@ -2,6 +2,7 @@ package code
 
 import code.day4.Day5
 import code.day6.Day6
+import code.day7.Day7
 
 fun main(args : Array<String>) {
 //    Day1().run()
@@ -9,5 +10,6 @@ fun main(args : Array<String>) {
 //    Day3().run()
 //    Day4().run()
 //    Day5().run()
-    Day6().run()
+//    Day6().run()
+    Day7().run()
 }
