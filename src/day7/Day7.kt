@@ -152,9 +152,13 @@ class Day7 {
         }
 
         while (!dependencies.isEmpty()) {
+            // bump time to the earliest finishing worker
+            time = workers.filter { it.workingOnLabel != "" }.minBy(Worker::busyUntil)?.busyUntil ?: time
+
             for (worker in workers) {
                 if (worker.busyUntil <= time) {
                     completeWork(worker.workingOnLabel)
+                    worker.workingOnLabel = ""
                 }
             }
 
