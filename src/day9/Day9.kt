@@ -26,18 +26,18 @@ class Day9 {
 
         var current = 1
 
-        var playerPoints = IntArray(players)
+        var playerPoints = LongArray(players)
         var playerTurn = 0
 
         for (i in 2..points) {
             if (i % 23 == 0) {
-                playerPoints[playerTurn % players] += i
+                playerPoints[playerTurn % players] += i.toLong()
                 current -= 7
 
                 if (current < 0) {
                     current += marbleList.size
                 }
-                playerPoints[playerTurn % players] += marbleList[current]
+                playerPoints[playerTurn % players] += marbleList[current].toLong()
 
                 marbleList.removeAt(current)
             } else {
@@ -47,10 +47,6 @@ class Day9 {
                 }
                 marbleList.add(spot, i)
                 current = spot
-            }
-
-            if (i% 1000 == 0) {
-                println("$i  ${marbleList.size} $current")
             }
 
             playerTurn ++
