@@ -17,6 +17,7 @@ class Day1 {
 
         fileValuesList.forEach{
             frequency += it
+            println(frequency)
         }
 
         println("\t* Final Frequency: $frequency")
@@ -26,7 +27,7 @@ class Day1 {
         println("Day 1 - Part B")
 
         var fileValuesList = readInputFile()
-        val frequencyList = mutableListOf<Int>()
+        val frequencyList = mutableMapOf<Int, Int>()
 
         var found = false
         var fileIterations = 0
@@ -34,10 +35,10 @@ class Day1 {
 
         while(!found) {
             loop@ for (it in fileValuesList) {
-                frequencyList.add(frequency)
+                frequencyList[frequency] = 0
                 frequency += it
 
-                if (frequencyList.contains(frequency)) {
+                if (frequencyList.containsKey(frequency)) {
                     println("\t* Duplicate Frequency: $frequency ($fileIterations file iterations to find)")
                     found = true
 
@@ -46,6 +47,8 @@ class Day1 {
             }
             fileIterations++
         }
+
+        println("\t* Final Frequency: $frequency")
     }
 
     private fun readInputFile(): List<Int> {
